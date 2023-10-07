@@ -5,8 +5,8 @@ import views.MainFrame;
 import views.LoginView;
 
 public class HomeDokter extends javax.swing.JPanel {
-    private MainFrame mainFrame;
-    private Dokter dokter;
+    private final MainFrame mainFrame;
+    private final Dokter dokter;
 
     public HomeDokter(MainFrame mainFrame, Dokter dokter) {
         initComponents();

@@ -14,9 +14,9 @@ import services.FormatterService;
 import views.MainFrame;
 
 public class JanjiMedisTableDokter extends javax.swing.JPanel {
-    private MainFrame mainFrame;
-    private Dokter dokter;
-    private DefaultTableModel tableModel;
+    private final MainFrame mainFrame;
+    private final Dokter dokter;
+    private final DefaultTableModel tableModel;
     private boolean isRowSelected = false;
 
     public JanjiMedisTableDokter(MainFrame mainFrame, Dokter dokter) {
@@ -24,7 +24,6 @@ public class JanjiMedisTableDokter extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         this.dokter = dokter;
         this.tableModel = (DefaultTableModel) tableJanjiMedis.getModel();
-        this.tableModel.setRowCount(0);
 
         if (dokter.getAllJanjiMedis()!= null) {
             updateTable();

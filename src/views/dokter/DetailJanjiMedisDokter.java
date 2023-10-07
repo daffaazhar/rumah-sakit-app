@@ -12,10 +12,10 @@ import services.FormatterService;
 import views.MainFrame;
 
 public class DetailJanjiMedisDokter extends javax.swing.JPanel {
-    private MainFrame mainFrame;
-    private Dokter dokter;
-    private JanjiMedis janjiMedis;
-    private DefaultTableModel tableModel;
+    private final MainFrame mainFrame;
+    private final Dokter dokter;
+    private final JanjiMedis janjiMedis;
+    private final DefaultTableModel tableModel;
     private boolean isRowSelected = false;
 
     public DetailJanjiMedisDokter(MainFrame mainFrame, Dokter dokter, JanjiMedis janjiMedis) {

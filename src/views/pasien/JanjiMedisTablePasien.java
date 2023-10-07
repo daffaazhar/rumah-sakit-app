@@ -11,7 +11,6 @@ import services.*;
 import views.MainFrame;
 
 public class JanjiMedisTablePasien extends javax.swing.JPanel {
-
     private final MainFrame mainFrame;
     private final RumahSakit rumahSakit;
     private final Pasien pasien;
@@ -24,7 +23,6 @@ public class JanjiMedisTablePasien extends javax.swing.JPanel {
         this.rumahSakit = DatabaseService.getRumahSakit();
         this.pasien = pasien;
         this.tableModel = (DefaultTableModel) tableJanjiMedis.getModel();
-        this.tableModel.setRowCount(0);
 
         if (rumahSakit.getAllJanjiMedis() != null) {
             updateTable();

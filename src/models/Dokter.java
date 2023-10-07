@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Dokter extends User {
     private String spesialisasi;
-    private List<JanjiMedis> janjiMedis;
-    private List<JanjiMedis> riwayatJanjiMedis;
+    private final List<JanjiMedis> janjiMedis;
+    private final List<JanjiMedis> riwayatJanjiMedis;
     
     public Dokter(String username, String password, String nama, 
             String nomorTelepon, String spesialisasi) {

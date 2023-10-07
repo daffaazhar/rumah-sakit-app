@@ -5,8 +5,8 @@ import models.Pasien;
 import views.LoginView;
 
 public class HomePasien extends javax.swing.JPanel {
-    private MainFrame mainFrame;
-    private Pasien pasien;
+    private final MainFrame mainFrame;
+    private final Pasien pasien;
     
     public HomePasien(MainFrame mainFrame, Pasien pasien) {
         initComponents();

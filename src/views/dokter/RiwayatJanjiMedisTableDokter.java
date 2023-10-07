@@ -9,9 +9,9 @@ import services.FormatterService;
 import views.MainFrame;
 
 public class RiwayatJanjiMedisTableDokter extends javax.swing.JPanel {
-    private MainFrame mainFrame;
-    private Dokter dokter;
-    private DefaultTableModel tableModel;
+    private final MainFrame mainFrame;
+    private final Dokter dokter;
+    private final DefaultTableModel tableModel;
     private boolean isRowSelected = false;
 
     public RiwayatJanjiMedisTableDokter(MainFrame mainFrame, Dokter dokter) {

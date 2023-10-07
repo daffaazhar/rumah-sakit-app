@@ -9,8 +9,8 @@ import services.FormatterService;
 import views.MainFrame;
 
 public class RiwayatMedisTablePasien extends javax.swing.JPanel {
-    private MainFrame mainFrame;
-    private Pasien pasien;
+    private final MainFrame mainFrame;
+    private final Pasien pasien;
     private final DefaultTableModel tableModel;
     private boolean isRowSelected = false;
     
@@ -19,7 +19,6 @@ public class RiwayatMedisTablePasien extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         this.pasien = pasien;
         this.tableModel = (DefaultTableModel) tableRiwayatMedis.getModel();
-        this.tableModel.setRowCount(0);
         
         if (pasien.getAllRiwayatMedis() != null) {
             updateTable();

@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class JanjiMedis {
     private Date tanggal;   
-    private Dokter dokter;
-    private List<Pasien> pasien;
-    private Map<Pasien, String> pasienStatus;
+    private final Dokter dokter;
+    private final List<Pasien> pasien;
+    private final Map<Pasien, String> pasienStatus;
     private boolean isActive;
 
     public JanjiMedis(Date tanggal, Dokter dokter) {

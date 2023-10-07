@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 public class RumahSakit {
-    private List<Admin> admin;
-    private List<Pasien> pasien;
-    private List<Dokter> dokter;
-    private List<JanjiMedis> janjiMedis;
+    private final List<Admin> admin;
+    private final List<Pasien> pasien;
+    private final List<Dokter> dokter;
+    private final List<JanjiMedis> janjiMedis;
     
     public RumahSakit() {
         admin = new ArrayList<>();
