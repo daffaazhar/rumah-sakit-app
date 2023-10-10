@@ -29,9 +29,11 @@ public class RiwayatMedisTablePasien extends javax.swing.JPanel {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     isRowSelected = tableRiwayatMedis.getSelectedRow() != -1;
+                    updateInputValue();
                 }
             }
         });       
+        updateInputValue();
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +44,13 @@ public class RiwayatMedisTablePasien extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRiwayatMedis = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        labelCatatan = new javax.swing.JLabel();
+        labelTanggal = new javax.swing.JLabel();
+        valueTanggal = new javax.swing.JTextField();
+        labelDokter = new javax.swing.JLabel();
+        valueDokter = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        valueCatatan = new javax.swing.JTextArea();
 
         formTitle.setFont(new java.awt.Font("Inter ExtraBold", 1, 20)); // NOI18N
         formTitle.setText("Daftar Riwayat Medis");
@@ -78,20 +87,58 @@ public class RiwayatMedisTablePasien extends javax.swing.JPanel {
             }
         });
 
+        labelCatatan.setFont(new java.awt.Font("Inter Medium", 0, 12)); // NOI18N
+        labelCatatan.setText("Catatan");
+
+        labelTanggal.setFont(new java.awt.Font("Inter Medium", 0, 12)); // NOI18N
+        labelTanggal.setText("Tanggal");
+
+        valueTanggal.setEditable(false);
+        valueTanggal.setFocusable(false);
+
+        labelDokter.setFont(new java.awt.Font("Inter Medium", 0, 12)); // NOI18N
+        labelDokter.setText("Dokter");
+
+        valueDokter.setEditable(false);
+        valueDokter.setFocusable(false);
+
+        valueCatatan.setEditable(false);
+        valueCatatan.setColumns(20);
+        valueCatatan.setLineWrap(true);
+        valueCatatan.setRows(5);
+        valueCatatan.setWrapStyleWord(true);
+        valueCatatan.setFocusable(false);
+        jScrollPane2.setViewportView(valueCatatan);
+        valueCatatan.setLineWrap(true);
+        valueCatatan.setWrapStyleWord(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack))
-                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(162, Short.MAX_VALUE)
                 .addComponent(formTitle)
                 .addGap(158, 158, 158))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTanggal)
+                            .addComponent(labelDokter)
+                            .addComponent(labelCatatan))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(valueDokter)
+                            .addComponent(valueTanggal)
+                            .addComponent(jScrollPane2))))
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,8 +146,20 @@ public class RiwayatMedisTablePasien extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(formTitle)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(valueTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTanggal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(valueDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDokter))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCatatan)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addComponent(btnBack)
                 .addGap(16, 16, 16))
         );
@@ -124,11 +183,38 @@ public class RiwayatMedisTablePasien extends javax.swing.JPanel {
             });
         }
     }
+    
+    private void updateInputValue() {
+        isRowSelected = tableRiwayatMedis.getSelectedRow() != -1;
+        
+        if(isRowSelected) {
+            int selectedRow = tableRiwayatMedis.getSelectedRow();
+            RiwayatMedis riwayatMedis = pasien.getRiwayatMedis(selectedRow);
+            String date = FormatterService.formatDate(riwayatMedis.getTanggal());
+            String dokter = riwayatMedis.getDokter().getNama();
+            String catatan = riwayatMedis.getCatatan();
+            
+            valueTanggal.setText(date);
+            valueDokter.setText(dokter);
+            valueCatatan.setText(catatan);
+        } else {
+            valueTanggal.setText("");
+            valueDokter.setText("");
+            valueCatatan.setText("");
+        }
+    }
             
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel formTitle;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelCatatan;
+    private javax.swing.JLabel labelDokter;
+    private javax.swing.JLabel labelTanggal;
     private javax.swing.JTable tableRiwayatMedis;
+    private javax.swing.JTextArea valueCatatan;
+    private javax.swing.JTextField valueDokter;
+    private javax.swing.JTextField valueTanggal;
     // End of variables declaration//GEN-END:variables
 }

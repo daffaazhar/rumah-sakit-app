@@ -16,7 +16,7 @@ public class JanjiMedis {
     public JanjiMedis(Date tanggal, Dokter dokter) {
         this.tanggal = tanggal;
         this.dokter = dokter;
-        this.pasien = new ArrayList<Pasien>();
+        this.pasien = new ArrayList<>();
         this.pasienStatus = new HashMap<>();
         this.isActive = true;
     }
@@ -33,9 +33,29 @@ public class JanjiMedis {
         this.tanggal = tanggal;
     }
     
+    public Dokter getDokter() {
+        return dokter;
+    }
+    
     public void tambahPasien(Pasien pasien) {
         this.pasien.add(pasien);
         this.pasienStatus.put(pasien, "Belum Ditangani");
+    }
+    
+    public Pasien getPasien(int index) {
+        return pasien.get(index);
+    }
+    
+    public int getJumlahPasien() {
+        return pasien.size();
+    }
+    
+    public List<Pasien> getAllPasien() {
+        return pasien;
+    }
+    
+    public String getPasienStatus(Pasien pasien) {
+        return pasienStatus.get(pasien);
     }
     
     public void setPasienStatus(Pasien pasien, String status) {
@@ -48,27 +68,7 @@ public class JanjiMedis {
         this.isActive = status;
     }
     
-    public int getJumlahPasien() {
-        return pasien.size();
-    }
-    
-    public Pasien getPasien(int index) {
-        return pasien.get(index);
-    }
-    
-    public Dokter getDokter() {
-        return dokter;
-    }
-    
-    public String getPasienStatus(Pasien pasien) {
-        return pasienStatus.get(pasien);
-    }
-    
     public boolean getIsActive() {
         return this.isActive;
-    }
-    
-    public List<Pasien> getAllPasien() {
-        return pasien;
     }
 }

@@ -4,27 +4,21 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import models.RumahSakit;
 import services.DatabaseService;
 import services.ValidationService;
 import views.MainFrame;
 
 public class PasienTable extends javax.swing.JPanel {
-
     private final MainFrame mainFrame;
-    private final RumahSakit rumahSakit;
     private DefaultTableModel tableModel;
     private boolean isRowSelected = false;
-    private int pointedIndex;
 
     public PasienTable(MainFrame mainFrame) {
         initComponents();
         this.mainFrame = mainFrame;
-        this.rumahSakit = DatabaseService.getRumahSakit();
         this.tableModel = (DefaultTableModel) tablePasien.getModel();
-        this.tableModel.setRowCount(0);
 
-        if (rumahSakit.getAllPasien() != null) {
+        if (DatabaseService.getRumahSakit().getAllPasien() != null) {
             updateTable();
         }
 
@@ -216,11 +210,11 @@ public class PasienTable extends javax.swing.JPanel {
         }
 
         if (isRowSelected) {
-            rumahSakit.updatePasien(tablePasien.getSelectedRow(),
+            DatabaseService.getRumahSakit().updatePasien(tablePasien.getSelectedRow(),
                     username, password, nama, nomorTelepon);
             JOptionPane.showMessageDialog(this, "Data berhasil diubah!");
         } else {
-            rumahSakit.tambahPasien(username, password, nama, nomorTelepon);
+            DatabaseService.getRumahSakit().tambahPasien(username, password, nama, nomorTelepon);
             JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan!");
         }
 
@@ -230,7 +224,7 @@ public class PasienTable extends javax.swing.JPanel {
 
     private void btnHapusPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusPasienActionPerformed
         if (isRowSelected) {
-            rumahSakit.hapusPasien(tablePasien.getSelectedRow());
+            DatabaseService.getRumahSakit().hapusPasien(tablePasien.getSelectedRow());
             updateTable();
             clearTextField();
         } else {
@@ -253,12 +247,12 @@ public class PasienTable extends javax.swing.JPanel {
     public void updateTable() {
         tableModel.setRowCount(0);
 
-        for (int i = 0; i < rumahSakit.getJumlahPasien(); i++) {
-            String nama = rumahSakit.getPasien(i).getNama();
-            String nomorTelepon = rumahSakit.getPasien(i).getNomorTelepon();
-            String username = rumahSakit.getPasien(i).getUsername();
-            String password = rumahSakit.getPasien(i).getPassword();
-            String nomorRiwayatMedis = rumahSakit.getPasien(i).getNomorRiwayatMedis();
+        for (int i = 0; i < DatabaseService.getRumahSakit().getJumlahPasien(); i++) {
+            String nama = DatabaseService.getRumahSakit().getPasien(i).getNama();
+            String nomorTelepon = DatabaseService.getRumahSakit().getPasien(i).getNomorTelepon();
+            String username = DatabaseService.getRumahSakit().getPasien(i).getUsername();
+            String password = DatabaseService.getRumahSakit().getPasien(i).getPassword();
+            String nomorRiwayatMedis = DatabaseService.getRumahSakit().getPasien(i).getNomorRiwayatMedis();
 
             tableModel.addRow(new Object[]{i + 1, nama, nomorTelepon, username,
                 password, nomorRiwayatMedis});
@@ -270,10 +264,10 @@ public class PasienTable extends javax.swing.JPanel {
 
         if (isRowSelected) {
             int pasienIndex = tablePasien.getSelectedRow();
-            inputNama.setText(rumahSakit.getPasien(pasienIndex).getNama());
-            inputNomorTelepon.setText(rumahSakit.getPasien(pasienIndex).getNomorTelepon());
+            inputNama.setText(DatabaseService.getRumahSakit().getPasien(pasienIndex).getNama());
+            inputNomorTelepon.setText(DatabaseService.getRumahSakit().getPasien(pasienIndex).getNomorTelepon());
             inputUsername.setEditable(false);
-            inputPassword.setText(rumahSakit.getPasien(pasienIndex).getPassword());
+            inputPassword.setText(DatabaseService.getRumahSakit().getPasien(pasienIndex).getPassword());
             btnPasienAction.setText("Ubah");
             btnHapusPasien.setVisible(true);
             btnCancel.setVisible(true);

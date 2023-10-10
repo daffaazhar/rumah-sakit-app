@@ -4,26 +4,21 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import models.RumahSakit;
 import services.DatabaseService;
 import services.ValidationService;
 import views.MainFrame;
 
 public class DokterTable extends javax.swing.JPanel {
-
     private final MainFrame mainFrame;
-    private final RumahSakit rumahSakit;
     private DefaultTableModel tableModel;
     private boolean isRowSelected = false;
 
     public DokterTable(MainFrame mainFrame) {
         initComponents();
         this.mainFrame = mainFrame;
-        this.rumahSakit = DatabaseService.getRumahSakit();
         this.tableModel = (DefaultTableModel) tableDokter.getModel();
-        this.tableModel.setRowCount(0);
 
-        if (rumahSakit.getAllDokter() != null) {
+        if (DatabaseService.getRumahSakit().getAllDokter() != null) {
             updateTable();
         }
 
@@ -225,11 +220,11 @@ public class DokterTable extends javax.swing.JPanel {
         }
 
         if (isRowSelected) {
-            rumahSakit.updateDokter(tableDokter.getSelectedRow(),
+            DatabaseService.getRumahSakit().updateDokter(tableDokter.getSelectedRow(),
                     username, password, nama, nomorTelepon, spesialisasi);
             JOptionPane.showMessageDialog(this, "Data berhasil diubah!");
         } else {
-            rumahSakit.tambahDokter(username, password, nama, nomorTelepon, spesialisasi);
+            DatabaseService.getRumahSakit().tambahDokter(username, password, nama, nomorTelepon, spesialisasi);
             JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan!");
         }
 
@@ -239,7 +234,7 @@ public class DokterTable extends javax.swing.JPanel {
 
     private void btnHapusDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusDokterActionPerformed
         if (isRowSelected) {
-            rumahSakit.hapusDokter(tableDokter.getSelectedRow());
+            DatabaseService.getRumahSakit().hapusDokter(tableDokter.getSelectedRow());
             updateTable();
             clearTextField();
         } else {
@@ -261,15 +256,15 @@ public class DokterTable extends javax.swing.JPanel {
         mainFrame.showView(new HomeAdmin(mainFrame));
     }//GEN-LAST:event_btnBackActionPerformed
 
-    public void updateTable() {
+    private void updateTable() {
         tableModel.setRowCount(0);
 
-        for (int i = 0; i < rumahSakit.getJumlahDokter(); i++) {
-            String nama = rumahSakit.getDokter(i).getNama();
-            String nomorTelepon = rumahSakit.getDokter(i).getNomorTelepon();
-            String username = rumahSakit.getDokter(i).getUsername();
-            String password = rumahSakit.getDokter(i).getPassword();
-            String spesialisasi = rumahSakit.getDokter(i).getSpesialisasi();
+        for (int i = 0; i < DatabaseService.getRumahSakit().getJumlahDokter(); i++) {
+            String nama = DatabaseService.getRumahSakit().getDokter(i).getNama();
+            String nomorTelepon = DatabaseService.getRumahSakit().getDokter(i).getNomorTelepon();
+            String username = DatabaseService.getRumahSakit().getDokter(i).getUsername();
+            String password = DatabaseService.getRumahSakit().getDokter(i).getPassword();
+            String spesialisasi = DatabaseService.getRumahSakit().getDokter(i).getSpesialisasi();
 
             tableModel.addRow(new Object[]{i + 1, nama, nomorTelepon, username,
                 password, spesialisasi});
@@ -282,12 +277,12 @@ public class DokterTable extends javax.swing.JPanel {
         if (isRowSelected) {
             int selectedRow = tableDokter.getSelectedRow();
             int dokterIndex = selectedRow;
-            inputNama.setText(rumahSakit.getDokter(dokterIndex).getNama());
-            inputNomorTelepon.setText(rumahSakit.getDokter(dokterIndex).getNomorTelepon());
-            inputUsername.setText(rumahSakit.getDokter(dokterIndex).getUsername());
+            inputNama.setText(DatabaseService.getRumahSakit().getDokter(dokterIndex).getNama());
+            inputNomorTelepon.setText(DatabaseService.getRumahSakit().getDokter(dokterIndex).getNomorTelepon());
+            inputUsername.setText(DatabaseService.getRumahSakit().getDokter(dokterIndex).getUsername());
             inputUsername.setEnabled(false);
-            inputPassword.setText(rumahSakit.getDokter(dokterIndex).getPassword());
-            inputSpesialisasi.setSelectedItem(rumahSakit.getDokter(dokterIndex).getSpesialisasi());
+            inputPassword.setText(DatabaseService.getRumahSakit().getDokter(dokterIndex).getPassword());
+            inputSpesialisasi.setSelectedItem(DatabaseService.getRumahSakit().getDokter(dokterIndex).getSpesialisasi());
             btnDokterAction.setText("Ubah");
             btnHapusDokter.setVisible(true);
             btnCancel.setVisible(true);

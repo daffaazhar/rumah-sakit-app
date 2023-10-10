@@ -1,8 +1,10 @@
 package views;
 
-import views.admin.PasienTable;
 import javax.swing.JOptionPane;
-import models.*;
+import models.Admin;
+import models.Dokter;
+import models.Pasien;
+import models.User;
 import services.DatabaseService;
 import views.admin.HomeAdmin;
 import views.dokter.HomeDokter;
@@ -10,11 +12,9 @@ import views.pasien.HomePasien;
 
 public class LoginView extends javax.swing.JPanel {
     private final MainFrame mainFrame;
-    private final RumahSakit rumahSakit;
     
     public LoginView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
-        this.rumahSakit = DatabaseService.getRumahSakit();
         initComponents();
     }
     
@@ -113,10 +113,10 @@ public class LoginView extends javax.swing.JPanel {
         User user = getUserByUsername(username);
         
         if(user != null && user.login(username, password)) {
-            if(user instanceof Dokter) {
-                mainFrame.showView(new HomeDokter(mainFrame, (Dokter) user));
-            } else if(user instanceof Pasien) {
-                mainFrame.showView(new HomePasien(mainFrame, (Pasien) user));
+            if(user instanceof Dokter dokter) {
+                mainFrame.showView(new HomeDokter(mainFrame, dokter));
+            } else if(user instanceof Pasien pasien) {
+                mainFrame.showView(new HomePasien(mainFrame, pasien));
             } else if(user instanceof Admin) {
                 mainFrame.showView(new HomeAdmin(mainFrame));
             }
@@ -129,20 +129,20 @@ public class LoginView extends javax.swing.JPanel {
         mainFrame.showView(new RegisterView(mainFrame));
     }//GEN-LAST:event_btnToRegisterViewActionPerformed
     
-    public User getUserByUsername(String username) {
-        for (User user : rumahSakit.getAllPasien()) {
+    private User getUserByUsername(String username) {
+        for (User user : DatabaseService.getRumahSakit().getAllPasien()) {
             if(user.getUsername().equals(username)) {
                 return user;
             }
         }
         
-        for (User user : rumahSakit.getAllDokter()) {
+        for (User user : DatabaseService.getRumahSakit().getAllDokter()) {
             if(user.getUsername().equals(username)) {
                 return user;
             }
         }
         
-        for (User user : rumahSakit.getAllAdmin()) {
+        for (User user : DatabaseService.getRumahSakit().getAllAdmin()) {
             if(user.getUsername().equals(username)) {
                 return user;
             }

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Pasien extends User {    
-    private String nomorRiwayatMedis;
-    private List<RiwayatMedis> riwayatMedis;
+    private final String nomorRiwayatMedis;
+    private final List<RiwayatMedis> riwayatMedis;
     
     public Pasien(String username, String password, String nama, 
             String nomorTelepon) {
@@ -34,14 +34,6 @@ public class Pasien extends User {
     public String getNomorRiwayatMedis() {
         return nomorRiwayatMedis;
     }
-
-    public void setNomorRiwayatMedis(String nomorRiwayatMedis) {
-        this.nomorRiwayatMedis = nomorRiwayatMedis;
-    }
-    
-    public int getJumlahRiwayatMedis() {
-        return this.riwayatMedis.size();
-    }
     
     public void tambahRiwayatMedis(RiwayatMedis riwayatMedis) {
         this.riwayatMedis.add(riwayatMedis);
@@ -51,11 +43,11 @@ public class Pasien extends User {
         return this.riwayatMedis.get(index);
     }
     
+    public int getJumlahRiwayatMedis() {
+        return this.riwayatMedis.size();
+    }
+    
     public List<RiwayatMedis> getAllRiwayatMedis() {
         return riwayatMedis;
-    }
-
-    public void setRiwayatMedis(List<RiwayatMedis> riwayatMedis) {
-        this.riwayatMedis = riwayatMedis;
     }
 }

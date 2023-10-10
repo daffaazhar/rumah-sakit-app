@@ -1,17 +1,14 @@
 package views;
 
 import javax.swing.JOptionPane;
-import models.RumahSakit;
 import services.DatabaseService;
 import services.ValidationService;
 
 public class RegisterView extends javax.swing.JPanel {
     private final MainFrame mainFrame;
-    private final RumahSakit rumahSakit;
     
     public RegisterView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
-        this.rumahSakit = DatabaseService.getRumahSakit();
         initComponents();
     }
 
@@ -150,7 +147,7 @@ public class RegisterView extends javax.swing.JPanel {
                 return;
             }
             
-            rumahSakit.tambahPasien(username, password, nama, nomorTelepon);
+            DatabaseService.getRumahSakit().tambahPasien(username, password, nama, nomorTelepon);
             JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan!\nAnda dapat login.");
             clearTextField();
         } else {

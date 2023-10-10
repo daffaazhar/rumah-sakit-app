@@ -24,24 +24,24 @@ public class Dokter extends User {
         this.spesialisasi = spesialisasi;
     }
     
+     public JanjiMedis getJanjiMedis(int index) {
+        return janjiMedis.get(index);
+    }
+    
     public int getJumlahJanjiMedis() {
         return janjiMedis.size();
     }
     
-    public int getJumlahRiwayatJanjiMedis() {
-        return riwayatJanjiMedis.size();
-    }
-    
-    public JanjiMedis getJanjiMedis(int index) {
-        return janjiMedis.get(index);
+    public List<JanjiMedis> getAllJanjiMedis() {
+        return janjiMedis;
     }
     
     public JanjiMedis getRiwayatJanjiMedis(int index) {
         return riwayatJanjiMedis.get(index);
     }
     
-    public List<JanjiMedis> getAllJanjiMedis() {
-        return janjiMedis;
+    public int getJumlahRiwayatJanjiMedis() {
+        return riwayatJanjiMedis.size();
     }
     
     public List<JanjiMedis> getAllRiwayatJanjiMedis() {

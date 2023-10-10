@@ -8,7 +8,6 @@ import javax.swing.table.DefaultTableModel;
 import models.Dokter;
 import models.JanjiMedis;
 import models.Pasien;
-import models.RumahSakit;
 import services.DatabaseService;
 import services.FormatterService;
 import views.MainFrame;
@@ -176,7 +175,6 @@ public class JanjiMedisTableDokter extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTambahJanjiMedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahJanjiMedisActionPerformed
-        RumahSakit rumahSakit = DatabaseService.getRumahSakit();
         Date tanggal = inputTanggal.getDate();
         Date today = new Date();
 
@@ -189,7 +187,7 @@ public class JanjiMedisTableDokter extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Tanggal yang dipilih tidak boleh sebelum hari ini!");
             return;
         } else {
-            rumahSakit.tambahJanjiMedis(tanggal, dokter);
+            DatabaseService.getRumahSakit().tambahJanjiMedis(tanggal, dokter);
             JOptionPane.showMessageDialog(this, "Berhasil membuat janji medis!");
 
             updateTable();
@@ -204,7 +202,6 @@ public class JanjiMedisTableDokter extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnTutupJanjiMedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupJanjiMedisActionPerformed
-        RumahSakit rumahSakit = DatabaseService.getRumahSakit();
         if (isRowSelected) {
             int selectedRow = tableJanjiMedis.getSelectedRow();
             JanjiMedis selectedJanjiMedis = dokter.getJanjiMedis(selectedRow);
@@ -218,7 +215,7 @@ public class JanjiMedisTableDokter extends javax.swing.JPanel {
             }
             
             if(!hasUntreatedPasien) {
-                rumahSakit.tutupJanjiMedis(selectedJanjiMedis);
+                DatabaseService.getRumahSakit().tutupJanjiMedis(selectedJanjiMedis);
                 JOptionPane.showMessageDialog(this, "Jadwal janji medis berhasil ditutup!");
             } else {
                 JOptionPane.showMessageDialog(this, "Tidak dapat menutup jadwal janji medis!\nMasih ada pasien yang belum ditangani.");

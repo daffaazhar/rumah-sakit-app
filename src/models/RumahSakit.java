@@ -13,14 +13,8 @@ public class RumahSakit {
     public RumahSakit() {
         admin = new ArrayList<>();
         admin.add(new Admin("admin", "admin123", "Admin RS", "087757453838"));
-        
         pasien = new ArrayList<>();
-        pasien.add(new Pasien("pasien", "pasien123", "Pasien", "087757453838"));
-        
         dokter = new ArrayList<>();
-        dokter.add(new Dokter("dokter", "dokter123", "Dokter", "087757453838", "Umum"));
-        dokter.add(new Dokter("daffaazhar", "daffa123", "Daffa Azhar", "082131115406", "Anak"));
-        
         janjiMedis = new ArrayList<>();
     }
     
@@ -35,12 +29,16 @@ public class RumahSakit {
     
     public void updatePasien(int index, String username, 
             String password, String nama, String nomorTelepon) {
-        Pasien data = pasien.get(index);
+        Pasien data = getPasien(index);
         data.setUsername(username);
         data.setPassword(password);
         data.setNama(nama);
         data.setNomorTelepon(nomorTelepon);
         pasien.set(index, data);
+    }
+    
+    public Pasien getPasien(int index) {
+        return pasien.get(index);
     }
     
     public void tambahDokter(String username, String password, String nama, 
@@ -54,13 +52,17 @@ public class RumahSakit {
     
     public void updateDokter(int index, String username, 
             String password, String nama, String nomorTelepon, String spesialisasi) {
-        Dokter data = dokter.get(index);
+        Dokter data = getDokter(index);
         data.setUsername(username);
         data.setPassword(password);
         data.setNama(nama);
         data.setNomorTelepon(nomorTelepon);
         data.setSpesialisasi(spesialisasi);
         dokter.set(index, data);
+    }
+    
+    public Dokter getDokter(int index) {
+        return dokter.get(index);
     }
     
     public void tambahJanjiMedis(Date tanggal, Dokter dokter) {
@@ -74,14 +76,6 @@ public class RumahSakit {
         this.janjiMedis.remove(janjiMedis);
         janjiMedis.getDokter().getAllJanjiMedis().remove(janjiMedis);
         janjiMedis.getDokter().getAllRiwayatJanjiMedis().add(janjiMedis);
-    }
-    
-    public Pasien getPasien(int index) {
-        return pasien.get(index);
-    }
-    
-    public Dokter getDokter(int index) {
-        return dokter.get(index);
     }
     
     public JanjiMedis getJanjiMedis(int index) {

@@ -6,13 +6,12 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import models.JanjiMedis;
 import models.Pasien;
-import models.RumahSakit;
-import services.*;
+import services.DatabaseService;
+import services.FormatterService;
 import views.MainFrame;
 
 public class JanjiMedisTablePasien extends javax.swing.JPanel {
     private final MainFrame mainFrame;
-    private final RumahSakit rumahSakit;
     private final Pasien pasien;
     private final DefaultTableModel tableModel;
     private boolean isRowSelected = false;
@@ -20,11 +19,10 @@ public class JanjiMedisTablePasien extends javax.swing.JPanel {
     public JanjiMedisTablePasien(MainFrame mainFrame, Pasien pasien) {
         initComponents();
         this.mainFrame = mainFrame;
-        this.rumahSakit = DatabaseService.getRumahSakit();
         this.pasien = pasien;
         this.tableModel = (DefaultTableModel) tableJanjiMedis.getModel();
 
-        if (rumahSakit.getAllJanjiMedis() != null) {
+        if (DatabaseService.getRumahSakit().getAllJanjiMedis() != null) {
             updateTable();
         }
 
@@ -136,15 +134,15 @@ public class JanjiMedisTablePasien extends javax.swing.JPanel {
 
     private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
         int selectedRow = tableJanjiMedis.getSelectedRow();
-        rumahSakit.getJanjiMedis(selectedRow).tambahPasien(pasien);
+        DatabaseService.getRumahSakit().getJanjiMedis(selectedRow).tambahPasien(pasien);
         JOptionPane.showMessageDialog(this, "Pendaftaran janji medis berhasil!");
         updateTable();
     }//GEN-LAST:event_btnDaftarActionPerformed
 
     private void updateTable() {
         this.tableModel.setRowCount(0);
-        for (int i = 0; i < rumahSakit.getJumlahJanjiMedis(); i++) {
-            JanjiMedis janjiMedis = rumahSakit.getJanjiMedis(i);
+        for (int i = 0; i < DatabaseService.getRumahSakit().getJumlahJanjiMedis(); i++) {
+            JanjiMedis janjiMedis = DatabaseService.getRumahSakit().getJanjiMedis(i);
             boolean isRegistered = janjiMedis.isPasienRegistered(this.pasien);
             String status = isRegistered ? "Sudah Terdaftar" : "Tidak Terdaftar";
 
@@ -164,7 +162,7 @@ public class JanjiMedisTablePasien extends javax.swing.JPanel {
 
         if (isRowSelected) {
             int selectedRow = tableJanjiMedis.getSelectedRow();
-            JanjiMedis janjiMedis = rumahSakit.getJanjiMedis(selectedRow);
+            JanjiMedis janjiMedis = DatabaseService.getRumahSakit().getJanjiMedis(selectedRow);
             boolean isRegistered = janjiMedis.isPasienRegistered(this.pasien);
             
             if(!isRegistered)
